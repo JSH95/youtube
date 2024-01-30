@@ -9,7 +9,6 @@ import java.util.List;
 public interface UserRepo extends JpaRepository<User, String> {
     User findByIdAndPassword(String id, String password);
 
-//    User findById(String id);
     @Query("SELECT distinct u FROM User u join u.movieList")
     List<User> findUserAndMovie();
 

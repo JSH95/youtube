@@ -1,7 +1,6 @@
 package com.weavus.weatube.repo;
 
 import com.weavus.weatube.entity.Movie;
-import com.weavus.weatube.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
