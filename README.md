@@ -18,6 +18,7 @@
 : id, password, user_name
 ### 영상 테이블 
 : id, user_id(유저id와 같음), file_fath, file_url, category(1 : 게임, 2:영화, 3:만화, 4 :IT), 
+
 movie_status(1 : 공개, 0: 비공개), upload_date
 ### 좋아요누적 테이블 
 : heart_id, movie_id(영상id와 같음)
