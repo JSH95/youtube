@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <title>WEAVUS youtube 영상 수정</title>
+</head>
+<body class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="/">WEAVUS</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">장르</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" th:href="@{/{num}(num = ${1})}">게임</a></li>
+                        <li><a class="dropdown-item" th:href="@{/{num}(num = ${2})}">음악</a></li>
+                        <li><a class="dropdown-item" th:href="@{/{num}(num = ${3})}">만화</a></li>
+                        <li><a class="dropdown-item" th:href="@{/{num}(num = ${4})}">IT뉴스</a></li>
+                        <!--                        1 : 게임, 2:음악, 3:만화, 4 : IT뉴스-->
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<hr>
+<form th:action="@{/movieModify}" method="post" class="container" enctype="multipart/form-data">
+
+    <input type="hidden" name="id" th:value="${modify.id}">
+    <input type="hidden" name="filePath" th:value="${modify.filePath}">
+    <input type="hidden" name="fileUrl" th:value="${modify.fileUrl}">
+    <input type="hidden" name="userId" th:value="${modify.userId}">
+    <input type="hidden" name="uploadDate" th:value="${modify.uploadDate}">
+    <br>
+    <input type="text" class="form-control" name="movieTitle" style="width: 40%" placeholder="영상 제목" th:value="${modify.movieTitle}" required>
+    <br>
+<!--    <input type="text" class="form-control" name="category" style="width: 40%" placeholder="카테고리" th:value="${modify.category}" required>-->
+    <div style="width: 40%" >
+        <label >게임</label>
+        <input type="radio" name="category" value="1"/>
+        <label >음악</label>
+        <input type="radio" name="category" value="2"/>
+        <label >만화</label>
+        <input type="radio" name="category" value="3"/>
+        <label >IT뉴스</label>
+        <input type="radio" name="category" value="4"/>
+    </div>
+    <br>
+    <input type="text" class="form-control" name="movieStatus" style="width: 40%" placeholder="1 : 공개, 0 : 비공개" th:value="${modify.movieStatus}" required>
+    <br>
+    <button type="submit" class="btn btn-warning">수정하기</button>
+    <a th:href="@{/detail/{id}(id = ${modify.id})}" class="btn btn-success">뒤로가기</a>
+    <span th:text="${msg}"></span>
+</form>
+<br>
+<footer class="py-5 bg-dark">
+    <div class="container"><p class="m-0 text-center text-white">WEAVUS &copy; Youtube 2024</p></div>
+</footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
+</body>
+</html>
