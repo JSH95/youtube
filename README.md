@@ -35,6 +35,6 @@ movie_status(1 : 공개, 0: 비공개), upload_date
 
 
 ## 동작 화면
-<img src="[https://github.com/JSH95/youtube/assets/153478886/fdcbe8f6-02a1-4fff-be5f-d100cfb0383d](https://github.com/JSH95/youtube/assets/153478886/c301b38e-71f6-4149-99d7-6b6a771f8ea9)" width="500" height="500"/></img>
+<img src="https://github.com/JSH95/youtube/assets/153478886/c301b38e-71f6-4149-99d7-6b6a771f8ea9" width="500" height="500"/></img>
 
 
