@@ -38,7 +38,6 @@
     <br>
     <input type="text" class="form-control" name="movieTitle" style="width: 40%" placeholder="영상 제목" th:value="${modify.movieTitle}" required>
     <br>
-<!--    <input type="text" class="form-control" name="category" style="width: 40%" placeholder="카테고리" th:value="${modify.category}" required>-->
     <div style="width: 40%" >
         <label >게임</label>
         <input type="radio" name="category" value="1"/>
@@ -50,7 +49,11 @@
         <input type="radio" name="category" value="4"/>
     </div>
     <br>
-    <input type="text" class="form-control" name="movieStatus" style="width: 40%" placeholder="1 : 공개, 0 : 비공개" th:value="${modify.movieStatus}" required>
+    <label >영상 공개 여부 : </label>
+    <input type="radio" name="movieStatus" value="1"/>
+    <label >공개</label>
+    <input type="radio" name="movieStatus" value="0"/>
+    <label >비공개</label>
     <br>
     <button type="submit" class="btn btn-warning">수정하기</button>
     <a th:href="@{/detail/{id}(id = ${modify.id})}" class="btn btn-success">뒤로가기</a>

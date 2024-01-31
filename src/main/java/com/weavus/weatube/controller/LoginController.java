@@ -21,7 +21,7 @@ public class LoginController {
     private final UserRepo userRepo;
     private final LoginService loginService;
 
-    @GetMapping("/login")
+    @GetMapping("/login") //로그인 처리
     private String login(){
 
         return "login";
@@ -42,7 +42,7 @@ public class LoginController {
         }
     }
 
-    @GetMapping("/logout")
+    @GetMapping("/logout") //로그아웃 처리
     private String logout(HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
         session.invalidate();
@@ -50,7 +50,7 @@ public class LoginController {
         return "redirect:/";
     }
 
-    @GetMapping("/signup")
+    @GetMapping("/signup") //회원가입 처리
     public String moveSignup(){
         return "signup";
     }
@@ -59,7 +59,6 @@ public class LoginController {
     public String signup(UserDto userDto, Model model){
         boolean result = loginService.signup(userDto);
         if (result){
-//            model.addAttribute("msg","회원가입이 완료 되었습니다.");
             model.addAttribute("message", "회원가입이 완료되었습니다.");
             model.addAttribute("searchUrl", "/login");
             return "message";
@@ -70,19 +69,19 @@ public class LoginController {
         }
     }
 
-    @GetMapping("/idCheck")//카멜식 바꾸기
+    @GetMapping("/idCheck") //아이디 중복 검사
     private String moveIdCheck(){
         return "idCheck";
     }
 
     @PostMapping("/idCheck")
     private String idCheck(String id, Model model){
-//        User user = userRepo.findById(id);
-//        if (user != null){
-//            model.addAttribute("msg","중복된 아이디 입니다.");
-//        }else {
-//            model.addAttribute("msg","사용 가능한 아이디 입니다.");
-//        }
+        User user = userRepo.findUserById(id);
+        if (user != null){
+            model.addAttribute("msg","중복된 아이디 입니다.");
+        }else {
+            model.addAttribute("msg","사용 가능한 아이디 입니다.");
+        }
         return "idCheck";
     }
 }

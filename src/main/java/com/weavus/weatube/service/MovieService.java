@@ -11,18 +11,10 @@ public class MovieService {
 
     private final MovieRepo movieRepo;
 
-    public boolean write(Movie movie) throws Exception {
-//        String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files\\";
-//
-//        UUID uuid = UUID.randomUUID();
+    public boolean write(Movie movie) { //영상 저장 서비스
 
-//        String fileName = uuid + "_" + file.getOriginalFilename();
-
-//        File saveFile = new File(projectPath, fileName);
-
-//        file.transferTo(saveFile);
-        movie.setFilePath("https://img.youtube.com/vi/" + movie.getFileUrl() + "/0.jpg");
-        movie.setFileUrl("https://youtube.com/embed/" + movie.getFileUrl());
+        movie.setFilePath("https://img.youtube.com/vi/" + movie.getFileUrl() + "/0.jpg"); //유튜브 썸네일 저장
+        movie.setFileUrl("https://youtube.com/embed/" + movie.getFileUrl()); //유튜브 영상 url저장
         try {
             movieRepo.save(movie);
             return true;
@@ -30,7 +22,6 @@ public class MovieService {
             return false;
         }
     }
-
 
     public boolean modify(Movie movie) {
         try {

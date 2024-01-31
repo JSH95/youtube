@@ -1,5 +1,6 @@
 package com.weavus.weatube.controller;
 
+import com.weavus.weatube.dto.MovieDto;
 import com.weavus.weatube.entity.Heart;
 import com.weavus.weatube.entity.Movie;
 import com.weavus.weatube.repo.HeartRepo;
@@ -39,7 +40,7 @@ public class MovieController {
         return "index";
     }
 
-    @GetMapping("detail/{id}")
+    @GetMapping("detail/{id}") //영상 상세화면 불러오기
     public String detail(@PathVariable Integer id, Model model){
 
         Movie movie = movieRepo.findById(id);
@@ -49,7 +50,7 @@ public class MovieController {
         return "detail";
     }
 
-    @GetMapping("movieSave/{id}")
+    @GetMapping("movieSave/{id}") //영상 저장
     public String WriteForm() {
         return "movieSave";
     }
@@ -58,7 +59,6 @@ public class MovieController {
     public String boardWritePro(Movie movie, Model model) throws Exception {
         log.info("movie={}", movie);
        boolean result = movieService.write(movie);
-//       , file
         if(result) {
             model.addAttribute("msg","영상 등록 완료");
             return "redirect:/";
@@ -68,7 +68,7 @@ public class MovieController {
         }
     }
 
-    @GetMapping("movieModify/{id}")
+    @GetMapping("movieModify/{id}") //영상 수정
     public String modify(@PathVariable Integer id, Model model){
 
         Movie movie = movieRepo.findById(id);
@@ -77,7 +77,7 @@ public class MovieController {
     }
 
     @PostMapping("movieModify")
-    public String modifyPro(Movie movie, Model model) {
+    public String modifyPro(Movie movie, Model model, MovieDto movieDto) {
 
         boolean result = movieService.modify(movie);
 
@@ -86,12 +86,12 @@ public class MovieController {
             return "redirect:/detail/" + movie.getId();
         } else {
             model.addAttribute("message", "한번 더 확인해 주세요.");
-            model.addAttribute("searchUrl", "redirect:/detail");
+            model.addAttribute("searchUrl", "/movieModify/" + movie.getId());
             return "message";
         }
     }
 
-    @GetMapping("delete/{id}")
+    @GetMapping("delete/{id}") //영상 비공개, 공개
     public String delete(@PathVariable Integer id){
         Movie movie = movieRepo.findById(id);
         if(movie.getMovieStatus().equals("1")){

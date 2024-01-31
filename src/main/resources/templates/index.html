@@ -29,10 +29,6 @@
                     </ul>
                 </li>
             </ul>
-<!--            <a th:if="${session.user != null and cartInfo != null}" th:href="@{|${session.user.getId()}/cart|}"-->
-<!--               class="btn btn-outline-dark"-->
-<!--               th:text="${'Cart : ' + cartInfo.size()}">-->
-<!--            </a>-->
             <div th:if="${session.user == null}">
                 <a class="btn btn-outline-dark" href="/login">
                     <i class="bi-cart-fill me-1"></i>
